@@ -1,0 +1,33 @@
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var isValid = function(s) {
+    
+    let openToClose = new Map();
+    openToClose.set('(',')');
+    openToClose.set('[',']');
+    openToClose.set('{','}');
+    
+    let closeToOpen = new Map();
+    closeToOpen.set(')','(');
+    closeToOpen.set(']','[');
+    closeToOpen.set('}','{');
+
+
+    let stack = [];
+    
+    for(let c of s){
+        if(openToClose.has(c)){
+            stack.push(c);
+        } else if(closeToOpen.has(c)){
+            let p = closeToOpen.get(c);
+            if(stack.length === 0)
+                return false;
+            let q = stack.pop();
+            if(p !== q)
+                return false;
+        }
+    }
+    return stack.length === 0;
+};
