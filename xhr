@@ -1,0 +1,16 @@
+let xhr = new XMLHttpRequest();
+let api  = function(){
+    let xhr = new XMLHttpRequest();
+    //xhr.onerror(console.log("EROOR!"));
+    
+    xhr.responseType = 'json';
+    xhr.onload = () => {
+        let data =  JSON.parse(xhr.response);
+        console.log(data);
+    };
+    xhr.open("GET", 'https://jsonplaceholder.typicode.com/posts/1', true);
+    xhr.send();
+    //return data;
+}
+
+api();
